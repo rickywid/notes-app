@@ -1,9 +1,10 @@
 import { FunctionComponent, useEffect, useState } from 'react';
-import { Box, Grid } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Grid, Select } from '@chakra-ui/react';
 import './App.css';
 import Card from './components/card';
 import { PriorityLevel } from './components/priorityIcon';
 import Navbar from './components/navbar';
+import notesMock from './notes';
 
 export interface INote {
     id?: string;
@@ -17,6 +18,7 @@ export interface INote {
 const App: FunctionComponent = () => {
 
     const [storage, setStorage] = useState<INote[]>([]);
+    const [filter, setFilter] = useState<PriorityLevel | "none">("none");
 
     useEffect(() => {
 
@@ -27,21 +29,32 @@ const App: FunctionComponent = () => {
          */
         if (!localStorage.getItem('notes')) {
             localStorage.setItem('notes', JSON.stringify([]));
+            generateNotes();
         } else {
             setStorage(JSON.parse(localStorage.getItem('notes') || '{}'));
         }
     }, []);
 
+    const filterCards = (cards: INote[]) => {
+        if(filter === "none") return storage;
+        return cards.filter(card => card.priority === filter);
+    }
+
     const displayNotes = () => {
-        return storage.map((note: INote, i) => {
+        return filterCards(storage).map((note: INote, i) => {
             return <Card
-                key={i}
+                key={note.id}
                 index={i}
                 deleteNote={deleteNote}
                 updateNote={updateNote}
                 {...note}
             />
         });
+    }
+
+    const generateNotes = () => {
+        localStorage.setItem('notes', JSON.stringify(notesMock));
+        setStorage(notesMock);
     }
 
     const getNotes = () => {
@@ -96,11 +109,20 @@ const App: FunctionComponent = () => {
     return (
         <Box p={10}>
             <Navbar addNote={addNote} />
+            <FormControl id="priority">
+                <FormLabel>Filter</FormLabel>
+                <Select defaultValue="none" onChange={(e) => setFilter(e.target.value as PriorityLevel)}>
+                    <option value="none"></option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </Select>
+            </FormControl>
             <Box mt={5} >
                 {storage.length ?
                     <Grid
-                        templateColumns="repeat(8, 1fr)"
-                        gap="3"
+                        templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+                        gap="5"
                     >
                         {displayNotes()}
                     </Grid>

@@ -17,6 +17,7 @@ import {
     Flex
 } from '@chakra-ui/react';
 import { AddIcon } from "@chakra-ui/icons";
+import { motion } from "framer-motion"
 import { INote } from '../App';
 import { PriorityLevel } from './priorityIcon';
 
@@ -26,6 +27,7 @@ interface NavbarProps {
 
 const Navbar: FunctionComponent<NavbarProps> = ({ addNote }) => {
 
+    const MotionButton = motion(Button);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [title, setTitle] = useState<string>("");
     const [body, setBody] = useState<string>("");
@@ -50,10 +52,18 @@ const Navbar: FunctionComponent<NavbarProps> = ({ addNote }) => {
                 justifyContent="space-between"
             >
                 <p>Notes-App</p>
-                <Button 
+                <MotionButton
                     onClick={onOpen}
                     size="sm"
-                ><AddIcon mr={3} />New Note</Button>
+                    colorScheme="teal"
+                    animate={{
+                        boxShadow: "0px 0px 17px 10px rgba(88,220,214,0.75)"
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity
+                    }}
+                ><AddIcon mr={3} />New Note</MotionButton>
             </Flex>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
