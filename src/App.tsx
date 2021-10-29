@@ -1,10 +1,10 @@
 import { FunctionComponent, useEffect, useState } from 'react';
-import { Box, FormControl, FormLabel, Grid, Select } from '@chakra-ui/react';
-import './App.css';
+import { Box, FormControl, FormLabel, Grid, Select, Image } from '@chakra-ui/react';
 import Card from './components/card';
 import { PriorityLevel } from './components/priorityIcon';
 import Navbar from './components/navbar';
 import notesMock from './notes';
+import spiderweb from './spiderweb.png';
 
 export interface INote {
     id?: string;
@@ -36,7 +36,7 @@ const App: FunctionComponent = () => {
     }, []);
 
     const filterCards = (cards: INote[]) => {
-        if(filter === "none") return storage;
+        if (filter === "none") return storage;
         return cards.filter(card => card.priority === filter);
     }
 
@@ -107,7 +107,27 @@ const App: FunctionComponent = () => {
     }
 
     return (
-        <Box p={10}>
+        <Box
+            p={10}
+            height="100vh"
+            overflow="hidden"
+        >
+            <Image
+                src={spiderweb}
+                alt="spider-web"
+                position="absolute"
+                bottom={-280}
+                left={-280}
+            />
+            <Image
+                src={spiderweb}
+                alt="spider-web"
+                position="absolute"
+                bottom={-180}
+                right={-180}
+                height={350}
+            />
+
             <Navbar addNote={addNote} />
             <FormControl id="priority">
                 <FormLabel>Filter</FormLabel>

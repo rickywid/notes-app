@@ -26,14 +26,18 @@ reportWebVitals();
 
 /**
  * 
- * TODO
+ * halloween bg
+ *    haunted house
+ *    clouds
+ *    spider ewb
  * 
- * add 3 dots icon to display Edit & Delete buttons
- *  - animate popup to fade in/fade out
+ * TODO
  * 
  * dark theme
  * 
  * drag n drop
  * 
  * style navbar
+ * 
+ * NO notes message
  */

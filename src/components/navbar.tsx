@@ -14,12 +14,15 @@ import {
     Input,
     Select,
     Textarea,
-    Flex
+    Flex,
+    Heading,
+    Image
 } from '@chakra-ui/react';
 import { AddIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion"
 import { INote } from '../App';
 import { PriorityLevel } from './priorityIcon';
+import pumpkin from '../pumpkin.png';
 
 interface NavbarProps {
     addNote: (data: INote) => void;
@@ -51,13 +54,31 @@ const Navbar: FunctionComponent<NavbarProps> = ({ addNote }) => {
                 alignItems="center"
                 justifyContent="space-between"
             >
-                <p>Notes-App</p>
+                <Flex
+                    alignItems="baseline"
+                >
+                    <Image
+                        src={pumpkin}
+                        alt="logo"
+                        display="inline"
+                        height={35}
+                        marginRight="10px"
+                    />
+                    <Heading
+                        as="h1"
+                        size="lg"
+                        color="gold"
+                        mt={-3}
+                    >
+                        Notes-App
+                    </Heading>
+                </Flex>
                 <MotionButton
                     onClick={onOpen}
                     size="sm"
-                    colorScheme="teal"
+                    bg="gold"
                     animate={{
-                        boxShadow: "0px 0px 17px 10px rgba(88,220,214,0.75)"
+                        boxShadow: "0px 0px 17px 10px gold"
                     }}
                     transition={{
                         duration: 2,

@@ -125,7 +125,6 @@ const Card: FunctionComponent<CardProps> = ({
                         <Text>{description}</Text>
                         <hr />
                         <div dangerouslySetInnerHTML={createMarkup(marked(body))} />
-                        <Text>{priority}</Text>
                     </ModalBody>
                     <ModalFooter>
                         <Text fontSize="smaller">{moment(parseInt(createdAt)).format('lll')}</Text>
@@ -188,16 +187,17 @@ const Card: FunctionComponent<CardProps> = ({
                 justifyContent="space-between"
                 alignItems="center"
             >
-                <Text
-                    fontSize="smaller"
+                <Heading
+                    as="h6"
+                    fontSize={11}
                     color="#888"
-                >{moment(parseInt(createdAt)).format('lll')}</Text>
+                >{moment(parseInt(createdAt)).format('lll')}</Heading>
                 <Box position="relative">
                     <AnimatePresence>
                         {optionsVisible && (
                             <MotionBox
                                 position="absolute"
-                                top={-1}
+                                top={-2}
                                 width={132}
                                 key={index}
                                 initial={{ opacity: 0, y: -15, x: -135 }}
@@ -212,6 +212,7 @@ const Card: FunctionComponent<CardProps> = ({
                                         display="inline"
                                         onClick={handleEditClick}
                                         _hover={{ cursor: "pointer", color: "#555" }}
+                                        color="gold"
                                     >
                                         <HiOutlinePencil
                                             style={{
@@ -221,6 +222,7 @@ const Card: FunctionComponent<CardProps> = ({
                                         <Text
                                             fontSize="smaller"
                                             display="inline"
+                                            verticalAlign="middle"
                                         >
                                             Edit
                                         </Text>
@@ -229,6 +231,7 @@ const Card: FunctionComponent<CardProps> = ({
                                         display="inline"
                                         onClick={() => deleteNote(index)}
                                         _hover={{ cursor: "pointer", color: "#555" }}
+                                        color="gold"
                                     >
                                         <HiOutlineTrash
                                             style={{
@@ -240,6 +243,7 @@ const Card: FunctionComponent<CardProps> = ({
                                             fontSize="smaller"
                                             _hover={{ cursor: "pointer", color: "#555" }}
                                             display="inline"
+                                            verticalAlign="middle"
                                         >
                                             Delete
                                         </Text>
