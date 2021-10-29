@@ -19,3 +19,21 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+
+
+
+/**
+ * 
+ * TODO
+ * 
+ * add 3 dots icon to display Edit & Delete buttons
+ *  - animate popup to fade in/fade out
+ * 
+ * dark theme
+ * 
+ * drag n drop
+ * 
+ * style navbar
+ */

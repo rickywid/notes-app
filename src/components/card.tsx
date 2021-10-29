@@ -17,13 +17,14 @@ import {
     Textarea,
     Flex,
     Text,
-    Heading
+    Heading,
+    UnorderedList,
+    ListItem
 } from '@chakra-ui/react';
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import marked from 'marked';
 import moment from "moment";
 import { AnimatePresence, motion } from "framer-motion"
-
+import { HiDotsHorizontal, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi";
 import PriorityIcon, { PriorityLevel } from './priorityIcon';
 import { INote } from "../App";
 
@@ -52,6 +53,7 @@ const Card: FunctionComponent<CardProps> = ({
     const [updateDescription, setDescription] = useState<string>(description);
     const [updatePriority, setPriority] = useState<PriorityLevel>(priority);
     const [modalView, setModalView] = useState<ModalView>('edit');
+    const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const createMarkup = (markup: string) => {
@@ -144,24 +146,18 @@ const Card: FunctionComponent<CardProps> = ({
     }
 
     return (
-        <AnimatePresence>
-            <MotionBox
-                key={1}
-                _hover={{ cursor: 'pointer' }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{
-                    opacity: 0,
-                    transition: { duration: 4 }
-
-                }}
+        <Box>
+            <Box
+                borderRadius={10}
+                bg="#fff"
+                p={4}
+                height={175}
+                mb={2}
+                position="relative"
             >
                 <Box
                     onClick={handleOpenCard}
-                    borderRadius={10}
-                    bg="#fff"
-                    p={4}
-                    height={145}
+                    _hover={{ cursor: 'pointer' }}
                 >
                     <Flex
                         alignItems="center"
@@ -173,38 +169,93 @@ const Card: FunctionComponent<CardProps> = ({
                     <Text color="grey">{truncateString(description)}</Text>
                 </Box>
                 <Flex
-                    justifyContent="space-between"
-                    alignItems="center"
+                    height={50}
+                    width={50}
+                    position="absolute"
+                    right={0}
+                    bottom={0}
+                    _hover={{ cursor: 'pointer' }}
+                    onClick={() => setOptionsVisible(!optionsVisible)}
                 >
-                    <Text
-                        fontSize="smaller"
-                        color="#888"
-                    >{moment(parseInt(createdAt)).format('lll')}</Text>
-                    <Box>
-                        <DeleteIcon
-                            mr={1}
-                            color="#aaa"
-                            onClick={() => deleteNote(index)}
-                            _hover={{
-                                color: "#000",
-                                cursor: "pointer"
-                            }}
-                        />
-                        <EditIcon
-                            color="#aaa999"
-                            onClick={handleEditClick}
-                            _hover={{
-                                color: "#000",
-                                cursor: "pointer"
-                            }}
-                        />
-                    </Box>
+                    <HiDotsHorizontal
+                        style={{
+                            margin: "auto"
+                        }}
+                    />
                 </Flex>
-                <Modal isOpen={isOpen} onClose={onClose} size="full">
-                    {displayModalView(modalView)}
-                </Modal>
-            </MotionBox>
-        </AnimatePresence>
+            </Box>
+            <Flex
+                justifyContent="space-between"
+                alignItems="center"
+            >
+                <Text
+                    fontSize="smaller"
+                    color="#888"
+                >{moment(parseInt(createdAt)).format('lll')}</Text>
+                <Box position="relative">
+                    <AnimatePresence>
+                        {optionsVisible && (
+                            <MotionBox
+                                position="absolute"
+                                top={-1}
+                                width={132}
+                                key={index}
+                                initial={{ opacity: 0, y: -15, x: -135 }}
+                                animate={{ opacity: 1, y: -8, x: -135 }}
+                                exit={{ opacity: 0, y: -10, x: -135 }}
+                            >
+                                <UnorderedList
+                                    margin={0}
+                                >
+                                    <ListItem
+                                        mr={5}
+                                        display="inline"
+                                        onClick={handleEditClick}
+                                        _hover={{ cursor: "pointer", color: "#555" }}
+                                    >
+                                        <HiOutlinePencil
+                                            style={{
+                                                display: "inline",
+                                                marginRight: "5px"
+                                            }} />
+                                        <Text
+                                            fontSize="smaller"
+                                            display="inline"
+                                        >
+                                            Edit
+                                        </Text>
+                                    </ListItem>
+                                    <ListItem
+                                        display="inline"
+                                        onClick={() => deleteNote(index)}
+                                        _hover={{ cursor: "pointer", color: "#555" }}
+                                    >
+                                        <HiOutlineTrash
+                                            style={{
+                                                display: "inline",
+                                                marginRight: "5px"
+                                            }}
+                                        />
+                                        <Text
+                                            fontSize="smaller"
+                                            _hover={{ cursor: "pointer", color: "#555" }}
+                                            display="inline"
+                                        >
+                                            Delete
+                                        </Text>
+                                    </ListItem>
+                                </UnorderedList>
+                            </MotionBox>
+                        )
+                        }
+                    </AnimatePresence>
+
+                </Box>
+            </Flex>
+            <Modal isOpen={isOpen} onClose={onClose} size="full">
+                {displayModalView(modalView)}
+            </Modal>
+        </Box>
     );
 }
 
