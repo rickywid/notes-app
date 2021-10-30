@@ -1,4 +1,4 @@
-# Currency Converter
+# Spooky Notes
 ![screenshot](https://i.imgur.com/JavTY8G.png)
 
 Just another note taking application to keep you on top of your important tasks. This project is based off of [app-ideas/notes-app](https://github.com/florinpop17/app-ideas/blob/master/Projects/1-Beginner/Notes-App.md).
