@@ -120,8 +120,10 @@ const App: FunctionComponent = () => {
         <Box
             p={10}
             minHeight="100vh"
-            bg={`#1a1c1f URL('${bgImg}.png') no-repeat center`}
-            bgSize={600}
+            backgroundSize="600px, auto"
+            backgroundPosition="center"
+            backgroundRepeat="no-repeat"
+            backgroundImage={`URL('${process.env.PUBLIC_URL}/${bgImg}.png'), linear-gradient(310deg, rgb(36 27 2) 0%, rgb(19 20 20) 48%, rgb(17 19 36) 100%)`}
         >
             <BgPicker
                 setBackground={setBackground}
