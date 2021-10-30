@@ -6,9 +6,9 @@ Just another note taking application to keep you on top of your important tasks.
 **[Live Site](https://rickywid.github.io/notes-app/)**
 
 ### Technologies
-[React](https://reactjs.org/)
-[Chakra-UI](https://chakra-ui.com/)
-[Framer Motion](https://www.framer.com/)
+- [React](https://reactjs.org/)
+- [Chakra-UI](https://chakra-ui.com/)
+- [Framer Motion](https://www.framer.com/)
 
 ## Local Development
 
