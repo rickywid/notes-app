@@ -157,7 +157,7 @@ const App: FunctionComponent = () => {
                         background="white"
                         width={200}
                     >
-                        <option value="none"></option>
+                        <option value="none">All</option>
                         <option value="low">Low</option>
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
