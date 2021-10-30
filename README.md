@@ -14,11 +14,11 @@ Just another note taking application to keep you on top of your important tasks.
 
 Clone application:
 
-`$ git clone https://github.com/rickywid/currency-converter.git`
+`$ git clone https://github.com/rickywid/notes-app.git`
 
 Install packages:
 
-`$ cd currency-converter && npm install`
+`$ cd notes-app && npm install`
 
 Run application:
 
