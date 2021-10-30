@@ -1,10 +1,12 @@
 import { FunctionComponent, useEffect, useState } from 'react';
-import { Box, FormControl, FormLabel, Grid, Select, Image } from '@chakra-ui/react';
+import { Box, Grid, Select, Flex, Text } from '@chakra-ui/react';
 import Card from './components/card';
 import { PriorityLevel } from './components/priorityIcon';
 import Navbar from './components/navbar';
 import notesMock from './notes';
-import spiderweb from './spiderweb.png';
+import NoNotes from './components/noNotes';
+import BgPicker from './components/bgPicker';
+import NotesCount from './components/notesCount';
 
 export interface INote {
     id?: string;
@@ -15,9 +17,12 @@ export interface INote {
     priority: PriorityLevel;
 }
 
+export type BgImageType = "skull" | "skull2" | "skull3" | "skull4" | "skull5" | "skull6" | "skull7";
+
 const App: FunctionComponent = () => {
 
     const [storage, setStorage] = useState<INote[]>([]);
+    const [bgImg, setBgImg] = useState<BgImageType>("skull");
     const [filter, setFilter] = useState<PriorityLevel | "none">("none");
 
     useEffect(() => {
@@ -106,49 +111,72 @@ const App: FunctionComponent = () => {
         setNotes(data);
     }
 
+    const setBackground = (image: BgImageType) => {
+        console.log('set bg');
+        setBgImg(image);
+    }
+
     return (
         <Box
             p={10}
-            height="100vh"
-            overflow="hidden"
+            minHeight="100vh"
+            bg={`#1a1c1f URL('${bgImg}.png') no-repeat center`}
+            bgSize={600}
         >
-            <Image
-                src={spiderweb}
-                alt="spider-web"
-                position="absolute"
-                bottom={-280}
-                left={-280}
+            <BgPicker
+                setBackground={setBackground}
+                bgImage={bgImg}
             />
-            <Image
-                src={spiderweb}
-                alt="spider-web"
-                position="absolute"
-                bottom={-180}
-                right={-180}
-                height={350}
+            <NotesCount count={storage.length}/>
+            <Navbar
+                addNote={addNote}
+                setBackground={setBackground}
+                bgImage={bgImg}
             />
-
-            <Navbar addNote={addNote} />
-            <FormControl id="priority">
-                <FormLabel>Filter</FormLabel>
-                <Select defaultValue="none" onChange={(e) => setFilter(e.target.value as PriorityLevel)}>
-                    <option value="none"></option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </Select>
-            </FormControl>
-            <Box mt={5} >
-                {storage.length ?
-                    <Grid
-                        templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
-                        gap="5"
+            <Box
+                mt={10}
+                mb={10}
+            >
+                <Flex
+                    alignItems="center"
+                    float="right"
+                    mb={35}
+                >
+                    <Text
+                        color="gold"
+                        fontSize="lg"
+                        mr={5}
                     >
-                        {displayNotes()}
-                    </Grid>
-                    :
-                    "No notes"
-                }
+                        Filter
+                    </Text>
+                    <Select
+                        size="sm"
+                        defaultValue="none"
+                        onChange={(e) => setFilter(e.target.value as PriorityLevel)}
+                        border="none"
+                        background="white"
+                        width={200}
+                    >
+                        <option value="none"></option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </Select>
+                </Flex>
+                <Box style={{ clear: "both" }}>
+                    {storage.length ?
+                        <Grid
+                            templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+                            gap="5"
+                        >
+                            {displayNotes()}
+                        </Grid>
+                        :
+                        <Flex height="65vh">
+                            <NoNotes />
+                        </Flex>
+                    }
+                </Box>
             </Box>
         </Box>
     );

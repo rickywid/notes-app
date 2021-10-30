@@ -70,7 +70,7 @@ const Card: FunctionComponent<CardProps> = ({
     }
 
     const truncateString = (text: string) => {
-        const length = 100;
+        const length = 150;
         return text.length > length ? `${text.substr(0, length)}...` : text;
     }
 
@@ -122,8 +122,6 @@ const Card: FunctionComponent<CardProps> = ({
                     <ModalHeader>{title}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Text>{description}</Text>
-                        <hr />
                         <div dangerouslySetInnerHTML={createMarkup(marked(body))} />
                     </ModalBody>
                     <ModalFooter>
@@ -137,6 +135,7 @@ const Card: FunctionComponent<CardProps> = ({
     const handleEditClick = () => {
         onOpen();
         setModalView('edit');
+        setOptionsVisible(!optionsVisible);
     }
 
     const handleOpenCard = () => {
@@ -157,6 +156,7 @@ const Card: FunctionComponent<CardProps> = ({
                 <Box
                     onClick={handleOpenCard}
                     _hover={{ cursor: 'pointer' }}
+                    minHeight="115px"
                 >
                     <Flex
                         alignItems="center"
@@ -229,7 +229,10 @@ const Card: FunctionComponent<CardProps> = ({
                                     </ListItem>
                                     <ListItem
                                         display="inline"
-                                        onClick={() => deleteNote(index)}
+                                        onClick={() => {
+                                            deleteNote(index);
+                                            setOptionsVisible(!optionsVisible);
+                                        }}
                                         _hover={{ cursor: "pointer", color: "#555" }}
                                         color="gold"
                                     >
@@ -256,7 +259,7 @@ const Card: FunctionComponent<CardProps> = ({
 
                 </Box>
             </Flex>
-            <Modal isOpen={isOpen} onClose={onClose} size="full">
+            <Modal isOpen={isOpen} onClose={onClose} size="xl">
                 {displayModalView(modalView)}
             </Modal>
         </Box>

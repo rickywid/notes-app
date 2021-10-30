@@ -32,12 +32,7 @@ reportWebVitals();
  *    spider ewb
  * 
  * TODO
- * 
- * dark theme
- * 
- * drag n drop
- * 
- * style navbar
- * 
- * NO notes message
+ *    
+ *    change logo to halloween hat
+ *    animate bg selection popup
  */

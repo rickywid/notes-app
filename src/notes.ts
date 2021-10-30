@@ -7,8 +7,6 @@ const notesMock: INote[] = [
         title: "Notes App",
         description: "Create and store your notes for later purpose!",
         body: `
-# Notes App
-
 **Tier:** 1-Beginner
 
 Create and store your notes for later purpose!
@@ -46,8 +44,6 @@ Create and store your notes for later purpose!
         title: "Countdown Timer",
         description: "Provide a continuously decrementing display of the he months, days, hours, minutes, and seconds to a user entered",
         body: `
-# Countdown Timer
-
 **Tier:** 1-Beginner
 
 We all have important events we look forward to in life, birthdays,
@@ -108,8 +104,6 @@ minutes count will decrement by 1 and the seconds will start to countdown from 5
         title: "Pomodoro Clock",
         description: "The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks - 5 minutes.",
         body: `
-# Pomodoro Clock
-
 **Tier:** 1-Beginner
 
 The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks - 5 minutes.
@@ -146,8 +140,6 @@ The Pomodoro Technique is a time management method developed by Francesco Cirill
         title: "Currency Converter",
         description: "A currency converter is used to convert an amount in one currency to its corresponding value in another currency using their current exchange rate.",
         body: `
-# Currency Converter
-
 **Tier:** 2-Intermediate
 
 A currency converter is used to convert an amount in one currency to its corresponding value in another currency using their current exchange rate, for example it can be used to calculate the value of 100 US Dollars in Euros. Current exchange rates are usually provided by banks and other financial service providers, they also (in some cases) offer free and paid APIs for developers to get current and historical exchange rates between two or more currencies.
@@ -183,8 +175,6 @@ A currency converter is used to convert an amount in one currency to its corresp
         title: "Simple Online Store",
         description: "Give your users the capability of selecting a product to purchase, viewing purchase information, adding it to an online shopping cart, and finally, actually purchasing the products in the shopping cart.",
         body: `
-# Simple Online Store
-
 **Tier:** 2-Intermediate
 
 In the [Product Landing Page](../1-Beginner/Product-Landing-Page.md) project you implemented
@@ -267,8 +257,6 @@ There are plenty of eCommerce Site Pages out there. You can use [Dribbble](https
         title: "Sales Reciepts",
         description: "implement point-of-sale functionality for a merchant and to make a record of all sales in a database.",
         body: `
-# Sales Reciepts
-
 **Tier:** 2-Intermediate
 
 In the [First DB App](../1-Beginner/First-DB-App.md) you were able to learn the basics of
@@ -363,8 +351,6 @@ rows added to the database.
         title: "This or That Game",
         description: "A game in which the user can select their favorite image between two choices.",
         body: `
-# This or That Game
-
 **Tier:** 2-Intermediate
 
 A game in which the user can select their favorite image between two choices.
@@ -400,8 +386,6 @@ A game in which the user can select their favorite image between two choices.
         title: "Battleship Game Engine",
         description: "Battleship Game Engine (BGE) implements the classic turn-based board game as a package that's separated from any presentation layer",
         body: `
-# Battleship Game Engine
-
 **Tier:** 3-Advanced
 
 Battleship Game Engine (BGE) implements the classic turn-based board game as a
