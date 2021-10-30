@@ -161,8 +161,9 @@ const Card: FunctionComponent<CardProps> = ({
                     <Flex
                         alignItems="center"
                         justifyContent="space-between"
+                        mb={4}
                     >
-                        <Heading as="h4" size="sm" mb={4}>{title}</Heading>
+                        <Heading as="h4" size="sm">{title}</Heading>
                         <PriorityIcon priority={priority} />
                     </Flex>
                     <Text color="grey">{truncateString(description)}</Text>
@@ -211,7 +212,7 @@ const Card: FunctionComponent<CardProps> = ({
                                         mr={5}
                                         display="inline"
                                         onClick={handleEditClick}
-                                        _hover={{ cursor: "pointer", color: "#555" }}
+                                        _hover={{ cursor: "pointer", color: "#fde560" }}
                                         color="gold"
                                     >
                                         <HiOutlinePencil
@@ -233,7 +234,7 @@ const Card: FunctionComponent<CardProps> = ({
                                             deleteNote(index);
                                             setOptionsVisible(!optionsVisible);
                                         }}
-                                        _hover={{ cursor: "pointer", color: "#555" }}
+                                        _hover={{ cursor: "pointer", color: "#fde560" }}
                                         color="gold"
                                     >
                                         <HiOutlineTrash
@@ -244,7 +245,7 @@ const Card: FunctionComponent<CardProps> = ({
                                         />
                                         <Text
                                             fontSize="smaller"
-                                            _hover={{ cursor: "pointer", color: "#555" }}
+                                            _hover={{ cursor: "pointer", color: "#fde560" }}
                                             display="inline"
                                             verticalAlign="middle"
                                         >
