@@ -10,6 +10,7 @@ Just another note taking application to keep you on top of your important tasks.
 - [TypeScript](https://www.typescriptlang.org/)
 - [Chakra-UI](https://chakra-ui.com/)
 - [Framer Motion](https://www.framer.com/)
+- [Marked](https://github.com/markedjs/marked)
 
 ## Local Development
 
